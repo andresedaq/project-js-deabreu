@@ -1,73 +1,59 @@
-// Crear algoritmo con un condicional (if)
-// Crear un algoritmo utilizando usando un ciclo (for o while)
+// / SEGUNDA PRE ENTREGA
+// Estructura del HTML
+// Variables necesarias
 // Funciones
-// Armar un simulador interactivo con la estructura de tu proyecto final
+// Objetos
+// Arrays
+// Metodos de busqueda y filtrado sobre el Array
+// For 
 
-const sneakerModels = ["Air Force", "Jordans", "Converse"];
+// Vamos a crear un sistema que consultara:
+// - Nombre del cliente.
+// - Presupuesto que estaba buscando.
+// - Le ofrecera un juego acorde a su presupuesto.
 
-function displayWelcomeMessage() {    
-    const headingPage = document.getElementById("headingPage");
-    const firstNameInput = document.getElementById("firstName");
-    const lastNameInput = document.getElementById("lastName");
-    const loginButton = document.getElementById("firstButton");
-    firstNameInput.style.display = "none";
-    lastNameInput.style.display = "none";
-    loginButton.style.display = "none";
-    headingPage.textContent = "Sneackery's";
-
-    const firstName = document.getElementById("firstName").value;
-    const lastName = document.getElementById("lastName").value;
-    const welcomeMessage = `Hello ${firstName} ${lastName}, are you ready to get your sneakers?`;
-
-;
-
-    const welcomeMessageElement = document.getElementById("welcomeMessage");
-    welcomeMessageElement.textContent = welcomeMessage;
-
-    const yesButton = document.getElementById("yesButton");
-    const nopeButton = document.getElementById("nopeButton");
-
-    yesButton.style.display = "inline-block";
-    nopeButton.style.display = "inline-block";
+class Game {
+    constructor(name, price, category) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+    }
 }
 
-function respond(response) {
-    const responseElement = document.getElementById("welcomeMessage");
-    const colorInput = document.getElementById("colorInput");
+const Game1 = new Game("Grand Theft Auto VI", 60, "Action");
+const Game2 = new Game("Red Dead Redemption 2", 30, "Action");
+const Game3 = new Game("Sims 4", 15, "Family");
+const Game4 = new Game("Need For Speed", 10, "Cars");
 
-    if (response === "Yes") {
-        responseElement.textContent = "What color are you looking for?";
-        colorInput.style.display = "block";
+const userName = prompt("¡Bienvenido a GameStop! ¿Cuál es tu nombre?");
+const userBudget = parseFloat(prompt("Genial " + userName + "," + " ¿Cuál es tu presupuesto?"));
 
-        const yesButton = document.getElementById("yesButton");
-        const nopeButton = document.getElementById("nopeButton");
-        yesButton.style.display = "none";
-        nopeButton.style.display = "none";
+let games = [Game1, Game2, Game3, Game4];
+let affordableGames = games.filter(game => game.price <= userBudget);
+let currentGameIndex = 0;
 
-        const firstNameInput = document.getElementById("firstName");
-        const lastNameInput = document.getElementById("lastName");
-        const loginButton = document.querySelector("button[onclick='displayWelcomeMessage']");
-        firstNameInput.style.display = "none";
-        lastNameInput.style.display = "none";
-        loginButton.style.display = "none";
+while (currentGameIndex < affordableGames.length) {
+    const currentGame = affordableGames[currentGameIndex];
+    
+    const userDecision = confirm(
+        "Nombre: " + currentGame.name + "\nPrecio: $" + currentGame.price + "\nCategoría: " + currentGame.category +
+        "\n\n¿Quieres comprar este juego?"
+    );
+
+    if (userDecision) {
+        alert("¡Genial " + userName + ", gracias por tu compra!\nDisfruta de " + currentGame.name + "!");
+        break;
     } else {
-        responseElement.textContent = `You chose: ${response}`;
+        const goToPreviousGame = confirm("¿Quieres ver el juego anterior?");
+        
+        if (goToPreviousGame) {
+            currentGameIndex = Math.max(0, currentGameIndex - 1);
+        } else {
+            currentGameIndex++;
+        }
     }
 }
 
-function getColorAndModels() {
-    const color = document.getElementById("sneakerColor").value;
-    const responseElement = document.getElementById("welcomeMessage");
-    responseElement.textContent = `Great, we have these models in ${color}:`;
-
-    const sneakerModelsElement = document.getElementById("sneakerModels");
-    sneakerModelsElement.style.display = "block";
-
-    let i = 0;
-    while (i < sneakerModels.length) {
-        const modelText = document.createElement("p");
-        modelText.textContent = ` - ${sneakerModels[i]}`;
-        sneakerModelsElement.appendChild(modelText);
-        i++;
-    }
+if (currentGameIndex === affordableGames.length) {
+    alert("Lo siento, no hay más juegos dentro de tu presupuesto. ¡Hasta luego!");
 }
