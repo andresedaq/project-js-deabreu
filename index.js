@@ -1,59 +1,98 @@
-// / SEGUNDA PRE ENTREGA
-// Estructura del HTML
-// Variables necesarias
-// Funciones
-// Objetos
-// Arrays
-// Metodos de busqueda y filtrado sobre el Array
-// For 
-
-// Vamos a crear un sistema que consultara:
-// - Nombre del cliente.
-// - Presupuesto que estaba buscando.
-// - Le ofrecera un juego acorde a su presupuesto.
+// Obtener elementos del DOM
+const gamesContainer = document.getElementById("gamesContainer");
+const itemCountElement = document.getElementById("itemCount");
+const totalAmountElement = document.getElementById("totalAmount");
+const clearCartBtn = document.getElementById("clearCartBtn");
 
 class Game {
-    constructor(name, price, category) {
-        this.name = name;
-        this.price = price;
-        this.category = category;
-    }
+  constructor(name, price, category, image) {
+    this.name = name;
+    this.price = price;
+    this.category = category;
+    this.image = image;
+  }
 }
 
-const Game1 = new Game("Grand Theft Auto VI", 60, "Action");
-const Game2 = new Game("Red Dead Redemption 2", 30, "Action");
-const Game3 = new Game("Sims 4", 15, "Family");
-const Game4 = new Game("Need For Speed", 10, "Cars");
+let games = [
+  new Game("Grand Theft Auto VI", 60, "Action", "./img/imagen1.jpg"),
+  new Game("Red Dead Redemption 2", 30, "Action", "./img/imagen2.jpg"),
+  new Game("Sims 4", 15, "Family", "./img/imagen3.jpg"),
+  new Game("Need For Speed", 10, "Cars", "./img/imagen4.jpg")
+];
 
-const userName = prompt("¡Bienvenido a GameStop! ¿Cuál es tu nombre?");
-const userBudget = parseFloat(prompt("Genial " + userName + "," + " ¿Cuál es tu presupuesto?"));
 
-let games = [Game1, Game2, Game3, Game4];
-let affordableGames = games.filter(game => game.price <= userBudget);
-let currentGameIndex = 0;
+let shoppingCart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
 
-while (currentGameIndex < affordableGames.length) {
-    const currentGame = affordableGames[currentGameIndex];
-    
-    const userDecision = confirm(
-        "Nombre: " + currentGame.name + "\nPrecio: $" + currentGame.price + "\nCategoría: " + currentGame.category +
-        "\n\n¿Quieres comprar este juego?"
-    );
 
-    if (userDecision) {
-        alert("¡Genial " + userName + ", gracias por tu compra!\nDisfruta de " + currentGame.name + "!");
-        break;
-    } else {
-        const goToPreviousGame = confirm("¿Quieres ver el juego anterior?");
-        
-        if (goToPreviousGame) {
-            currentGameIndex = Math.max(0, currentGameIndex - 1);
-        } else {
-            currentGameIndex++;
-        }
-    }
+function updateCartUI() {
+
+  itemCountElement.textContent = shoppingCart.length;
+
+  const totalAmount = shoppingCart.reduce((total, game) => total + game.price, 0);
+  totalAmountElement.textContent = `$${totalAmount.toFixed(2)}`;
+
+  localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
 }
 
-if (currentGameIndex === affordableGames.length) {
-    alert("Lo siento, no hay más juegos dentro de tu presupuesto. ¡Hasta luego!");
+
+function addToCart(game) {
+
+  shoppingCart.push(game);
+
+  localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
+
+  updateCartUI();
 }
+
+function removeFromCart(game) {
+
+  const gameIndex = shoppingCart.findIndex(cartGame => cartGame.name === game.name);
+
+  if (gameIndex !== -1) {
+
+    shoppingCart.splice(gameIndex, 1);
+
+    localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
+
+    updateCartUI();
+  }
+}
+
+function clearCart() {
+
+  shoppingCart = [];
+
+  localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
+
+  updateCartUI();
+}
+
+
+games.forEach(game => {
+
+  const gameCard = document.createElement("div");
+  gameCard.classList.add("card");
+  gameCard.innerHTML = `
+    <div class="imageContainer">
+      <img class="image" src="${game.image}" alt="${game.name} Image">
+    </div>
+    <h2>${game.name}</h2>
+    <h3>Precio: $${game.price}</h3>
+    <h3>Categoría: ${game.category}</h3>
+    <button class="addToCartBtn btn">Agregar al carrito</button>
+    <button class="removeFromCartBtn btn">Eliminar del carrito</button>
+  `;
+
+  gamesContainer.appendChild(gameCard);
+
+
+  const addToCartBtn = gameCard.querySelector(".addToCartBtn");
+  addToCartBtn.addEventListener("click", () => addToCart(game));
+
+  const removeFromCartBtn = gameCard.querySelector(".removeFromCartBtn");
+  removeFromCartBtn.addEventListener("click", () => removeFromCart(game));
+});
+
+clearCartBtn.addEventListener("click", clearCart);
+
+updateCartUI();
