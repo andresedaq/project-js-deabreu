@@ -13,23 +13,30 @@
 <body>
 
     <header>
-
-        <h1>GameStore</h1>
-        <br>
-        <div class="flex"><span class="material-symbols-outlined">shopping_cart</span> <span id="itemCount">0</span></div>
-        <br>
-        <div class="header--cartNumber__container"> <strong> Total: </strong> <span id="totalAmount">$0.00</span></div>
-        <br>
-        <button class="btn" id="clearCartBtn">Limpiar Carrito</button>
-
+        <nav class="navbar__container">
+            <div class="navbar__logo">
+            </div>
+            <div class="navbar__buttons">
+                <button class="navbar--buttons__primary">Log in</button>
+                <button class="navbar--buttons__secondary">Sign in</button>
+                <div class="cart-icon" id="cartIcon" onclick="showCartDetails()">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span id="itemCount">0</span>
+                    <span id="totalAmount">$0.00</span>
+                </div>
+            </div>
+        </nav>
     </header>
     <main>
-        <div id="gamesContainer">
-        </div>
-    </main>
-    <footer></footer>
 
-    <script src="index.js"></script>
+        <div id="gamesContainer"></div>
+
+    </main>
+    <footer>
+
+    </footer>
+
+    <script src="index2.js"></script>
 </body>
 
 </html>

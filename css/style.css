@@ -2,10 +2,18 @@
     box-sizing: border-box;
 }
 
+
 * {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif; /* Cambiado el estilo de fuente */
+}
+
+body {
+    min-height: 100vh;
+    margin: 0rem;
+    background-color: #1E1E1E; /* Cambiado el color de fondo */
+    color: #FFFFFF; /* Cambiado el color del texto */
 }
 
 igm, picture, svg, video {
@@ -13,58 +21,66 @@ igm, picture, svg, video {
     max-width: 100%;
 }
 
-body {
-    min-height: 100vh;
-    margin: 2rem 5rem;
-    background-color: #272635;
-    color: #E8E9F3;
-}
+/* Navbar */
 
-
-
-.flex {
+.navbar__container {
+    padding: 0 5rem;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.5rem;
-}
-
-.header--cartNumber__container {
-    margin-bottom: 0.5rem;
-}
-
-.btn {
-    padding: 0.5rem 0.5rem;
-    background: black;
-    color: white;
-}
-
-.imageContainer {
-    width: 130px;
-    height: 130px;
-}
-
-.image{
+    height: 6rem;
     width: 100%;
-    height: 100%;
-
+    background-color: black;
 }
 
-.card {
+.navbar__logo {
+    height: 60px;
+    width: 80px;
+    background-color: white;
+}    
+
+.navbar--buttons__primary {
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    font-weight: 800;
+}
+
+.navbar--buttons__secondary {
+    padding: 0.5rem 1rem;
+    font-weight: 800;
+}
+
+
+/* Game section */
+
+.gameImage {
+    width: 100px;
+    height: 100px;
+}
+
+#gamesContainer{
+    margin-top: 5rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.gameFlex {
+    width: 12rem;
+    height: 15rem;
+    background-color: grey;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    width: 15rem;
-    height: 25rem;
-    background-color: #B1E5F2;
-    color: black;
-    border-radius: 1rem;
-    margin: 0 3rem;
-    padding: 1rem 2rem;
     align-items: center;
-    text-align: center;
+    align-content: flex-start;
+    justify-content: center;
 }
 
-#gamesContainer {
-    display: flex;
-    justify-content: center;
+.game__button {
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    font-weight: 800;
+    background-color: green;
 }
