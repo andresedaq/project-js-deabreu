@@ -5,38 +5,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 
 <body>
-
-    <header>
         <nav class="navbar__container">
-            <div class="navbar__logo">
+            <div>
+                <span class="material-symbols-outlined">shopping_cart</span>
+                <span id="itemCount">0</span>
+                <span id="totalAmount">$0.00</span>
+                <button class="navbar--buttons_delete" id="clearCart">Clear Cart</button>
             </div>
+            
             <div class="navbar__buttons">
                 <button class="navbar--buttons__primary">Log in</button>
                 <button class="navbar--buttons__secondary">Sign in</button>
                 <div class="cart-icon" id="cartIcon" onclick="showCartDetails()">
-                    <span class="material-symbols-outlined">shopping_cart</span>
-                    <span id="itemCount">0</span>
-                    <span id="totalAmount">$0.00</span>
                 </div>
             </div>
         </nav>
+
+    <header>
     </header>
+
     <main>
-
         <div id="gamesContainer"></div>
-
     </main>
+    
     <footer>
-
     </footer>
 
     <script src="index2.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
 
 </html>

@@ -2,18 +2,18 @@
     box-sizing: border-box;
 }
 
-
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif; /* Cambiado el estilo de fuente */
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
     min-height: 100vh;
     margin: 0rem;
-    background-color: #1E1E1E; /* Cambiado el color de fondo */
-    color: #FFFFFF; /* Cambiado el color del texto */
+    background: rgb(25,149,255);
+    background: linear-gradient(135deg, rgba(25,149,255,1) 31%, rgba(91,186,241,1) 89%);
+    color: #000000;
 }
 
 igm, picture, svg, video {
@@ -23,14 +23,21 @@ igm, picture, svg, video {
 
 /* Navbar */
 
+.navbar__wrapper {
+    min-height: 100vh;
+}
+
 .navbar__container {
     padding: 0 5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 6rem;
     width: 100%;
-    background-color: black;
+    background-color: transparent;
 }
 
 .navbar__logo {
@@ -50,37 +57,69 @@ igm, picture, svg, video {
     font-weight: 800;
 }
 
-
-/* Game section */
-
-.gameImage {
-    width: 100px;
-    height: 100px;
-}
-
-#gamesContainer{
-    margin-top: 5rem;
-    margin-left: auto;
-    margin-right: auto;
-    width: 60%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.gameFlex {
-    width: 12rem;
-    height: 15rem;
-    background-color: grey;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: flex-start;
-    justify-content: center;
-}
-
-.game__button {
+.navbar--buttons_delete {
     padding: 0.5rem 1rem;
     margin-right: 0.5rem;
     font-weight: 800;
-    background-color: green;
+}
+
+
+/* Game section */
+
+#gamesContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 6rem;
+}
+
+.game__card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgb(255, 255, 255);
+    border-radius: 0.5rem;
+    border: 1.5rem solid rgb(91, 186, 241);
+    padding: 4rem;
+    align-items: center;
+    width: 60rem;
+    margin-bottom: 3rem;
+}
+
+.game__image {
+    border-radius: 0.2rem;
+    border: 10px solid rgb(91, 186, 241);
+    width: 150px;
+    height: 150px;
+}
+
+.game__title {
+    width: 10rem;
+    text-align: center;
+}
+
+.game__category {
+    font-weight: 600;
+
+}
+
+.game__price {
+    font-weight: 600;
+
+}
+
+.game__button {
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 800;
+    background-color: rgba(49, 209, 49, 0.842);
+}
+
+.remove__button {
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 800;
+    background-color: rgba(192, 10, 10, 0.842);
 }

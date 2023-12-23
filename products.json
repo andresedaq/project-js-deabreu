@@ -1,0 +1,7 @@
+[
+    { "name": "Grand Theft Auto VI", "price": 60 , "category": "Action", "img": "./img/imagen1.jpg" },
+    { "name": "Red Dead Redemption 2", "price": 30, "category": "Action", "img": "./img/imagen2.jpg"},
+    { "name": "Sims 4", "price": 15, "category": "Family", "img": "./img/imagen3.jpg" },
+    { "name": "Need For Speed", "price": 20, "category": "Cars", "img": "./img/imagen4.jpg"}
+
+]
